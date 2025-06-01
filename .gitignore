@@ -1,9 +1,6 @@
-# .gitignore – vytvoř v rootu projektu
+*.pyc
 __pycache__/
-*.py[cod]
-*.sqlite3
-venv/
+db.sqlite3
+.env
+.venv/
 *.log
-.DS_Store
-.vscode/
-.idea/

@@ -1,0 +1,9 @@
+{% extends "muzika/base.html" %}
+{% block content %}
+<h2>Hudební žánry</h2>
+<ul>
+    {% for zanr in zanry %}
+        <li>{{ zanr.nazev }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

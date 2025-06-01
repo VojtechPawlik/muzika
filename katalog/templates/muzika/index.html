@@ -1,0 +1,11 @@
+{% extends "muzika/base.html" %}
+{% block content %}
+<h2>Nejnovější alba</h2>
+<ul>
+    {% for album in alba %}
+        <li><strong>{{ album.nazev }}</strong> – {{ album.interpret }} ({{ album.rok }})</li>
+    {% empty %}
+        <li>Žádná alba zatím nejsou dostupná.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

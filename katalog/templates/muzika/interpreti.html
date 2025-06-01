@@ -1,0 +1,9 @@
+{% extends "muzika/base.html" %}
+{% block content %}
+<h2>Hudební interpreti</h2>
+<ul>
+    {% for interpret in interpreti %}
+        <li>{{ interpret.jmeno }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

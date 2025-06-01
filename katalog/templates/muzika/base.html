@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Muzika</title>
+    <style>
+        body { font-family: Arial; margin: 0; }
+        header {
+            background-color: #002147;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        nav {
+            background-color: #eee;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .nav-left a, .nav-right form {
+            margin: 0 10px;
+            text-decoration: none;
+            color: black;
+        }
+        .container {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Muzikální přehled</h1>
+    </header>
+    <nav>
+        <div class="nav-left">
+            <a href="{% url 'zanry' %}">Žánry</a>
+            <a href="{% url 'interpreti' %}">Interpreti</a>
+            <a href="#">Skladby</a>
+        </div>
+        <div class="nav-right">
+            <form method="get" action="#">
+                <input type="text" name="q" placeholder="Vyhledat...">
+                <button type="submit">Hledat</button>
+            </form>
+        </div>
+    </nav>
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>
