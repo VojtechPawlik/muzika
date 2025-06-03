@@ -4,48 +4,147 @@
     <meta charset="UTF-8">
     <title>Muzika</title>
     <style>
-        body { font-family: Arial; margin: 0; }
-        header {
-            background-color: #002147;
-            color: white;
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .main-heading-bar {
+            background-color: #cccccc; /* Grey background */
+            color: #333333; /* Dark grey text */
             padding: 20px;
             text-align: center;
         }
-        nav {
-            background-color: #eee;
-            padding: 10px;
-            display: flex;
-            justify-content: space-between;
+        .main-heading-bar h1 {
+            margin: 0;
+            font-size: 2.5em; /* Large heading */
         }
-        .nav-left a, .nav-right form {
-            margin: 0 10px;
+        .top-bar {
+            background-color: #1d1f52; /* Darker background for the top bar */
+            color: white;
+            padding: 10px 20px; /* Adjusted padding */
+            display: flex;
+            justify-content: space-between; /* Aligns items to the ends */
+            align-items: center; /* Vertically centers items */
+        }
+        .top-bar h1 {
+            margin: 0;
+            font-size: 1.5em; /* Slightly smaller heading */
+        }
+        .top-bar nav a {
+            color: white; /* White links */
             text-decoration: none;
-            color: black;
+            margin-left: 15px; /* Spacing between links */
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+        .top-bar nav a:hover {
+            background-color: #555; /* Hover effect */
+        }
+        .nav-right form {
+            display: flex; /* Align search input and button */
+        }
+        .nav-right input[type="text"] {
+            padding: 5px;
+            border: none;
+            border-radius: 3px 0 0 3px;
+        }
+        .nav-right button {
+            padding: 5px 10px;
+            border: none;
+            background-color: #555;
+            color: white;
+            border-radius: 0 3px 3px 0;
+            cursor: pointer;
+        }
+        .nav-right button:hover {
+            background-color: #777;
         }
         .container {
             padding: 20px;
+            flex-grow: 1; /* Allows container to fill available space */
+        }
+        footer {
+            background-color: #f1f1f1; /* Light grey background */
+            color: #333; /* Dark text color */
+            text-align: center;
+            padding: 15px;
+            border-top: 1px solid #ddd; /* Subtle top border */
+        }
+        .grid-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px; /* Space between cards */
+            justify-content: center; /* Center cards if they don't fill the row */
+        }
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            width: calc(33.333% - 20px); /* 3 cards per row, accounting for gap */
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center content within the card */
+            text-align: center;
+        }
+        .card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+        .card h3 {
+            margin-top: 0;
+            margin-bottom: 5px;
+            font-size: 1.2em;
+        }
+        .card p {
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            color: #555;
+        }
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .card {
+                width: calc(50% - 20px); /* 2 cards per row */
+            }
+        }
+        @media (max-width: 768px) {
+            .card {
+                width: calc(100% - 20px); /* 1 card per row */
+            }
         }
     </style>
 </head>
 <body>
-    <header>
+    <div class="main-heading-bar">
+        <h1>Hudební Alba</h1>
+    </div>
+    <div class="top-bar">
         <h1>Muzikální přehled</h1>
-    </header>
-    <nav>
-        <div class="nav-left">
+        <nav>
+            <a href="{% url 'index' %}">Domů</a>
             <a href="{% url 'zanry' %}">Žánry</a>
             <a href="{% url 'interpreti' %}">Interpreti</a>
-            <a href="#">Skladby</a>
-        </div>
+            <a href="#">Skladby</a> {# Assuming you might have a 'skladby' URL name later #}
+        </nav>
         <div class="nav-right">
-            <form method="get" action="#">
+            <form method="get" action="#"> {# Consider pointing this to a search view #}
                 <input type="text" name="q" placeholder="Vyhledat...">
                 <button type="submit">Hledat</button>
             </form>
         </div>
-    </nav>
+    </div>
+
     <div class="container">
         {% block content %}{% endblock %}
     </div>
+
+    <footer>
+        <p>Vojtěch Pawlik - IT3</p>
+    </footer>
 </body>
 </html>

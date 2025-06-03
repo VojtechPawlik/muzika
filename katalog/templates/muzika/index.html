@@ -1,11 +1,23 @@
 {% extends "muzika/base.html" %}
 {% block content %}
 <h2>Nejnovější alba</h2>
-<ul>
+<div class="grid-container">
     {% for album in alba %}
-        <li><strong>{{ album.nazev }}</strong> – {{ album.interpret }} ({{ album.rok }})</li>
+        <div class="card">
+            {% if album.obrazek %}
+                <img src="{{ album.obrazek.url }}" alt="{{ album.nazev }}">
+            {% else %}
+                <img src="https://via.placeholder.com/150?text=No+Image" alt="No image available">
+            {% endif %}
+            <h3>{{ album.nazev }}</h3>
+            <p>{{ album.interpret.jmeno }}</p>
+            <p>Rok: {{ album.rok_vydanni }}</p>
+            {% if album.zanr %}
+                <p>Žánr: {{ album.zanr.nazev }}</p>
+            {% endif %}
+        </div>
     {% empty %}
-        <li>Žádná alba zatím nejsou dostupná.</li>
+        <p>Žádná alba zatím nejsou dostupná.</p>
     {% endfor %}
-</ul>
+</div>
 {% endblock %}

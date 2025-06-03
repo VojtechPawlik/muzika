@@ -1,9 +1,19 @@
 {% extends "muzika/base.html" %}
 {% block content %}
 <h2>Hudební žánry</h2>
-<ul>
+<div class="grid-container">
     {% for zanr in zanry %}
-        <li>{{ zanr.nazev }}</li>
+        <div class="card">
+            <h3>{{ zanr.nazev }}</h3>
+            {% if zanr.popis %}
+                <p>{{ zanr.popis|truncatewords:20 }}</p>
+            {% endif %}
+            {% if zanr.popularita is not None %}
+                <p>Popularita: {{ zanr.popularita }}</p>
+            {% endif %}
+        </div>
+    {% empty %}
+        <p>Žádné žánry zatím nejsou dostupné.</p>
     {% endfor %}
-</ul>
+</div>
 {% endblock %}

@@ -1,9 +1,27 @@
 {% extends "muzika/base.html" %}
 {% block content %}
 <h2>Hudební interpreti</h2>
-<ul>
+<div class="grid-container">
     {% for interpret in interpreti %}
-        <li>{{ interpret.jmeno }}</li>
+        <div class="card">
+            {% if interpret.obrazek %}
+                <img src="{{ interpret.obrazek.url }}" alt="{{ interpret.jmeno }}">
+            {% else %}
+                <img src="https://via.placeholder.com/150?text=No+Image" alt="No image available">
+            {% endif %}
+            <h3>{{ interpret.jmeno }}</h3>
+            {% if interpret.narozeni %}
+                <p>Rok narození: {{ interpret.narozeni }}</p>
+            {% endif %}
+            {% if interpret.zeme_puvodu %}
+                <p>Země původu: {{ interpret.zeme_puvodu }}</p>
+            {% endif %}
+            {% if interpret.popis %}
+                <p>{{ interpret.popis|truncatewords:20 }}</p>
+            {% endif %}
+        </div>
+    {% empty %}
+        <p>Žádní interpreti zatím nejsou dostupní.</p>
     {% endfor %}
-</ul>
+</div>
 {% endblock %}
