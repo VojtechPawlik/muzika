@@ -15,6 +15,7 @@ class Interpret(models.Model):
     narozeni = models.PositiveIntegerField(null=True, blank=True)
     zeme_puvodu = models.CharField(max_length=50, blank=True)
     obrazek = models.ImageField(upload_to='interpreti/', blank=True, null=True)
+    zanry = models.ManyToManyField(Zanr, blank=True)
 
     def __str__(self):
         return self.jmeno

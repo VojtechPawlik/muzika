@@ -1,0 +1,27 @@
+{% extends "muzika/base.html" %}
+
+{% block content %}
+  <div style="border: 1px solid #ccc; padding: 30px; margin: 20px auto; max-width: 900px; display: flex; align-items: flex-start;">
+    <div style="flex: 2; padding-right: 20px; text-align: left;">
+      <h2 style="font-size: 2em;">{{ interpret.jmeno }}</h2>
+      {% if interpret.popis %}
+        <p style="font-size: 1.2em;"><strong>Popis:</strong> {{ interpret.popis }}</p>
+      {% endif %}
+      {% if interpret.narozeni %}
+        <p style="font-size: 1.2em;"><strong>Rok narození:</strong> {{ interpret.narozeni }}</p>
+      {% endif %}
+      {% if interpret.zeme_puvodu %}
+        <p style="font-size: 1.2em;"><strong>Země původu:</strong> {{ interpret.zeme_puvodu }}</p>
+      {% endif %}
+      {# Add other details here if needed #}
+    </div>
+    {% if interpret.obrazek %}
+      <div style="flex: 1; text-align: center;">
+        <img src="{{ interpret.obrazek.url }}" alt="{{ interpret.jmeno }}" style="max-width: 100%; height: auto; border-radius: 8px;">
+      </div>
+    {% endif %}
+  </div>
+  <div style="text-align: center; margin-top: 20px;">
+    <a href="{% url 'interpreti' %}" style="display: inline-block; padding: 10px 15px; background-color: #1d1f52; color: white; text-decoration: none; border-radius: 5px;">Zpět na seznam interpretů</a>
+  </div>
+{% endblock %}

@@ -1,27 +1,26 @@
 {% extends "muzika/base.html" %}
 {% block content %}
-<h2>Hudební interpreti</h2>
-<div class="grid-container">
-    {% for interpret in interpreti %}
-        <div class="card">
-            {% if interpret.obrazek %}
-                <img src="{{ interpret.obrazek.url }}" alt="{{ interpret.jmeno }}">
-            {% else %}
-                <img src="https://via.placeholder.com/150?text=No+Image" alt="No image available">
-            {% endif %}
-            <h3>{{ interpret.jmeno }}</h3>
-            {% if interpret.narozeni %}
-                <p>Rok narození: {{ interpret.narozeni }}</p>
-            {% endif %}
-            {% if interpret.zeme_puvodu %}
-                <p>Země původu: {{ interpret.zeme_puvodu }}</p>
-            {% endif %}
-            {% if interpret.popis %}
-                <p>{{ interpret.popis|truncatewords:20 }}</p>
-            {% endif %}
+<h2 style="text-align: center;">Hudební interpreti podle žánrů</h2>
+
+{% for zanr in zanry_s_interprety %}
+    {% if zanr.interpret_set.count > 0 %}
+        <div class="genre-section" style="margin-bottom: 30px;">
+            <h3 style="border-bottom: 1px solid #eee; padding: 10px; margin-bottom: 15px; background-color: #e9e9e9; border-radius: 5px; text-align: center;">{{ zanr.nazev }}</h3>
+            <div class="grid-container" style="justify-content: center;">
+                {% for interpret in zanr.interpret_set.all %}
+                    <div class="card" style="aspect-ratio: 1; display: flex; flex-direction: column; justify-content: space-between; width: calc(25% - 20px);">
+                        <h4 style="font-size: 1.5em; margin-bottom: 5px; background-color: #f0f0f0; padding: 8px; border-radius: 5px;"><a href="{% url 'detail_interpreta' interpret.id %}" style="text-decoration: none; color: #333;">{{ interpret.jmeno }}</a></h4>
+                        {% if interpret.obrazek %}
+                            <img src="{{ interpret.obrazek.url }}" alt="{{ interpret.jmeno }}" style="width: 100%; flex-grow: 1; object-fit: cover; border-radius: 8px; min-height: 0;">
+                        {% else %}
+                            <img src="https://via.placeholder.com/150?text=No+Image" alt="No image available" style="width: 100%; flex-grow: 1; object-fit: cover; border-radius: 8px; min-height: 0;">
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
         </div>
-    {% empty %}
-        <p>Žádní interpreti zatím nejsou dostupní.</p>
-    {% endfor %}
-</div>
+    {% endif %}
+{% empty %}
+    <p>Žádné žánry s interprety k zobrazení.</p>
+{% endfor %}
 {% endblock %}
