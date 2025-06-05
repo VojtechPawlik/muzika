@@ -16,9 +16,19 @@ def interpreti(request):
     # For now, we'll focus on genres that have interpreters.
     # interpreti_bez_zanru = Interpret.objects.filter(zanry__isnull=True)
     return render(request, 'muzika/interpreti.html', {'zanry_s_interprety': zanry_s_interprety})
+
 def detail_zanru(request, zanr_id):
     zanr = Zanr.objects.get(pk=zanr_id)
     return render(request, 'muzika/detail_zanru.html', {'zanr': zanr})
+
 def detail_interpreta(request, interpret_id):
     interpret = Interpret.objects.get(pk=interpret_id)
     return render(request, 'muzika/detail_interpreta.html', {'interpret': interpret})
+
+def detail_alba(request, album_id):
+    album = Album.objects.get(pk=album_id)
+    return render(request, 'muzika/detail_alba.html', {'album': album})
+
+def alba(request):
+    zanry_s_alby = Zanr.objects.prefetch_related('album_set').all()
+    return render(request, 'muzika/alba.html', {'zanry_s_alby': zanry_s_alby})

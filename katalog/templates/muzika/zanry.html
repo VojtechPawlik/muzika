@@ -1,19 +1,31 @@
 {% extends "muzika/base.html" %}
 {% block content %}
 <h2 style="text-align: center;">Hudební žánry</h2>
-<div class="grid-container">
+<div class="grid-container" style="gap: 20px; max-width: 1200px; margin: 0 auto; padding: 0 20px;">
     {% for zanr in zanry %}
-        <div class="card">
-            <h3 style="background-color: #f0f0f0; padding: 8px; border-radius: 5px; margin-bottom: 10px;"><a href="{% url 'detail_zanru' zanr.id %}" style="text-decoration: none; color: #333;">{{ zanr.nazev }}</a></h3>
+        <div class="card" style="width: calc(33.333% - 20px); padding: 8px; box-sizing: border-box; border: 1px solid #eee; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+            <h3 style="margin-bottom: 8px; background-color: #e9ecef; padding: 6px; border-radius: 4px; font-size: 1.1em; font-weight: 700; color: #141538;"><a href="{% url 'detail_zanru' zanr.id %}" style="text-decoration: none; color: #141538;">{{ zanr.nazev }}</a></h3>
             {% if zanr.popis %}
-                <p>{{ zanr.popis|truncatewords:20 }}</p>
+                <p style="font-size: 0.9em; color: #666;">{{ zanr.popis|truncatewords:20 }}</p>
             {% endif %}
             {% if zanr.popularita is not None %}
-                <p>Popularita: {{ zanr.popularita }}</p>
+                <p style="font-size: 0.9em; color: #666;">Popularita: {{ zanr.popularita }}</p>
+            {% endif %}
+            {% if user.is_staff %}
+                <div style="margin-top: 8px; display: flex; gap: 8px; justify-content: center;">
+                    <a href="{% url 'admin:katalog_zanr_change' zanr.id %}" class="admin-button" style="padding: 4px 8px; background-color: #141538; color: white; text-decoration: none; border-radius: 4px; font-size: 0.9em;">Upravit</a>
+                    <a href="{% url 'admin:katalog_zanr_delete' zanr.id %}" class="admin-button" style="padding: 4px 8px; background-color: #b02a37; color: white; text-decoration: none; border-radius: 4px; font-size: 0.9em;">Smazat</a>
+                </div>
             {% endif %}
         </div>
     {% empty %}
         <p>Žádné žánry zatím nejsou dostupné.</p>
     {% endfor %}
 </div>
+
+{% if user.is_staff %}
+    <div style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
+        <a href="{% url 'admin:katalog_zanr_add' %}" class="admin-button" style="padding: 8px 16px; background-color: #198754; color: white; text-decoration: none; border-radius: 4px; font-size: 1em; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">Přidat žánr</a>
+    </div>
+{% endif %}
 {% endblock %}

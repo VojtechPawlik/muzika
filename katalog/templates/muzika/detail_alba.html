@@ -1,0 +1,22 @@
+{% extends "muzika/base.html" %}
+
+{% block content %}
+  <div style="border: 1px solid #ccc; padding: 30px; margin: 20px auto; max-width: 900px; display: flex; align-items: flex-start;">
+    <div style="flex: 2; padding-right: 20px; text-align: left;">
+      <h2 style="font-size: 2em;">{{ album.nazev }}</h2>
+      <p style="font-size: 1.2em;"><strong>Interpret:</strong> {{ album.interpret.jmeno }}</p>
+      <p style="font-size: 1.2em;"><strong>Rok vydání:</strong> {{ album.rok_vydanni }}</p>
+      {% if album.zanr %}
+        <p style="font-size: 1.2em;"><strong>Žánr:</strong> {{ album.zanr.nazev }}</p>
+      {% endif %}
+    </div>
+    {% if album.obrazek %}
+      <div style="flex: 1; text-align: center;">
+        <img src="{{ album.obrazek.url }}" alt="{{ album.nazev }}" style="max-width: 100%; height: auto; border-radius: 8px;">
+      </div>
+    {% endif %}
+  </div>
+  <div style="text-align: center; margin-top: 20px;">
+    <a href="{% url 'index' %}" style="display: inline-block; padding: 10px 15px; background-color: #1d1f52; color: white; text-decoration: none; border-radius: 5px;">Zpět na seznam alb</a>
+  </div>
+{% endblock %} 

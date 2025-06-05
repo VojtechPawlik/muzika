@@ -121,7 +121,7 @@
 </head>
 <body>
     <div class="main-heading-bar">
-        <h1>Hudební Alba</h1>
+        <h1>Music</h1>
     </div>
     <div class="top-bar">
         <h1>Muzikální přehled</h1>
@@ -129,7 +129,7 @@
             <a href="{% url 'index' %}">Domů</a>
             <a href="{% url 'zanry' %}">Žánry</a>
             <a href="{% url 'interpreti' %}">Interpreti</a>
-            <a href="#">Skladby</a> {# Assuming you might have a 'skladby' URL name later #}
+            <a href="{% url 'alba' %}">Alba</a>
         </nav>
         <div class="nav-right">
             <form method="get" action="#"> {# Consider pointing this to a search view #}
