@@ -80,15 +80,22 @@
             justify-content: center; /* Center cards if they don't fill the row */
         }
         .card {
-            border: 1px solid #ddd;
+            border: 3px solid #1d1f52;
             border-radius: 8px;
             padding: 15px;
-            width: calc(33.333% - 20px); /* 3 cards per row, accounting for gap */
-            box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+            width: calc(33.333% - 20px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
             display: flex;
             flex-direction: column;
-            align-items: center; /* Center content within the card */
+            align-items: center;
             text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+            background-color: white;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+            border-color: #2d3f72;
         }
         .card img {
             max-width: 100%;
@@ -96,15 +103,52 @@
             border-radius: 4px;
             margin-bottom: 10px;
         }
-        .card h3 {
+        .card h3, .card h4 {
             margin-top: 0;
             margin-bottom: 5px;
             font-size: 1.2em;
+            color: white;
+            background-color: #1d1f52;
+            padding: 8px 12px;
+            border-radius: 4px;
+            width: 100%;
+        }
+        .card h3 a, .card h4 a {
+            text-decoration: none;
+            color: white;
+            transition: color 0.2s;
+        }
+        .card h3 a:hover, .card h4 a:hover {
+            color: #cccccc;
         }
         .card p {
             margin-bottom: 5px;
             font-size: 0.9em;
             color: #555;
+        }
+        .admin-buttons {
+            margin-top: 8px;
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+        }
+        .admin-button {
+            padding: 4px 8px;
+            background-color: #1d1f52;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.9em;
+            transition: background-color 0.2s;
+        }
+        .admin-button:hover {
+            background-color: #2d3f72;
+        }
+        .admin-button.delete {
+            background-color: #b02a37;
+        }
+        .admin-button.delete:hover {
+            background-color: #dc3545;
         }
         /* Responsive adjustments */
         @media (max-width: 992px) {
@@ -127,9 +171,9 @@
         <h1>Muzikální přehled</h1>
         <nav>
             <a href="{% url 'index' %}">Domů</a>
-            <a href="{% url 'zanry' %}">Žánry</a>
-            <a href="{% url 'interpreti' %}">Interpreti</a>
-            <a href="{% url 'alba' %}">Alba</a>
+            <a href="{% url 'seznam_zanru' %}">Žánry</a>
+            <a href="{% url 'seznam_interpretu' %}">Interpreti</a>
+            <a href="{% url 'seznam_alba' %}">Alba</a>
         </nav>
         <div class="nav-right">
             <form method="get" action="#"> {# Consider pointing this to a search view #}

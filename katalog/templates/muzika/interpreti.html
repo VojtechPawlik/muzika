@@ -10,7 +10,7 @@
                 <div class="grid-container" style="gap: 20px;">
                     {% for interpret in zanr.interpret_set.all %}
                         <div class="card" style="width: calc(33.333% - 20px); padding: 8px; box-sizing: border-box; border: 1px solid #eee; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-                            <h4 style="margin-bottom: 8px; background-color: #e9ecef; padding: 6px; border-radius: 4px; font-size: 1.1em; font-weight: 700; color: #141538;"><a href="{% url 'detail_interpreta' interpret.id %}" style="text-decoration: none; color: #141538;">{{ interpret.jmeno }}</a></h4>
+                            <h4 style="margin-bottom: 8px; background-color: #1d1f52; padding: 6px; border-radius: 4px; font-size: 1.1em; font-weight: 700; color: white;"><a href="{% url 'detail_interpreta' interpret.id %}" style="text-decoration: none; color: white;">{{ interpret.jmeno }}</a></h4>
                             {% if interpret.obrazek %}
                                 <img src="{{ interpret.obrazek.url }}" alt="{{ interpret.jmeno }}" style="width: 100%; height: auto; max-height: 250px; object-fit: contain; border-radius: 4px;">
                             {% else %}
@@ -18,7 +18,7 @@
                             {% endif %}
                             {% if user.is_staff %}
                                 <div style="margin-top: 8px; display: flex; gap: 8px; justify-content: center;">
-                                    <a href="{% url 'admin:katalog_interpret_change' interpret.id %}" class="admin-button" style="padding: 4px 8px; background-color: #141538; color: white; text-decoration: none; border-radius: 4px; font-size: 0.9em;">Upravit</a>
+                                    <a href="{% url 'admin:katalog_interpret_change' interpret.id %}" class="admin-button" style="padding: 4px 8px; background-color: #1d1f52; color: white; text-decoration: none; border-radius: 4px; font-size: 0.9em;">Upravit</a>
                                     <a href="{% url 'admin:katalog_interpret_delete' interpret.id %}" class="admin-button" style="padding: 4px 8px; background-color: #b02a37; color: white; text-decoration: none; border-radius: 4px; font-size: 0.9em;">Smazat</a>
                                 </div>
                             {% endif %}
@@ -34,7 +34,7 @@
 
 {% if user.is_staff %}
     <div style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
-        <a href="{% url 'admin:katalog_interpret_add' %}" class="admin-button" style="padding: 8px 16px; background-color: #198754; color: white; text-decoration: none; border-radius: 4px; font-size: 1em; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">Přidat interpreta</a>
+        <a href="{% url 'pridat_interpreta' %}" class="admin-button" style="padding: 8px 16px; background-color: #198754; color: white; text-decoration: none; border-radius: 4px; font-size: 1em; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">Přidat interpreta</a>
     </div>
 {% endif %}
 {% endblock %}

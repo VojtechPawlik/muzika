@@ -8,6 +8,11 @@ class Zanr(models.Model):
     def __str__(self):
         return self.nazev
 
+    class Meta:
+        verbose_name = "Žánr"
+        verbose_name_plural = "Žánry"
+        ordering = ['nazev']
+
 
 class Interpret(models.Model):
     jmeno = models.CharField(max_length=100)
@@ -20,6 +25,11 @@ class Interpret(models.Model):
     def __str__(self):
         return self.jmeno
 
+    class Meta:
+        verbose_name = "Interpret"
+        verbose_name_plural = "Interpreti"
+        ordering = ['jmeno']
+
 
 class Album(models.Model):
     nazev = models.CharField(max_length=200)
@@ -30,3 +40,8 @@ class Album(models.Model):
 
     def __str__(self):
         return self.nazev
+
+    class Meta:
+        verbose_name = "Album"
+        verbose_name_plural = "Alba"
+        ordering = ['nazev']

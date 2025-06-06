@@ -22,6 +22,6 @@
     {% endif %}
   </div>
   <div style="text-align: center; margin-top: 20px;">
-    <a href="{% url 'interpreti' %}" style="display: inline-block; padding: 10px 15px; background-color: #1d1f52; color: white; text-decoration: none; border-radius: 5px;">Zpět na seznam interpretů</a>
+    <a href="{{ request.META.HTTP_REFERER|default:'/' }}" style="display: inline-block; padding: 10px 15px; background-color: #0d1b2a; color: white; text-decoration: none; border-radius: 5px;">Zpět</a>
   </div>
 {% endblock %}
